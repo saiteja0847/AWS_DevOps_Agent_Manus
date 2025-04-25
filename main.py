@@ -147,13 +147,13 @@ def main():
                 
                 if result.get("status") == "confirmation_required":
                     print("\nOperation details:")
-                    for key, value in result.get("operation", {}).items():
+                    for key, value in result.items():
                         print(f"  {key}: {value}")
                     
                     confirmation = input("\nDo you want to proceed? (yes/no): ")
                     
                     if confirmation.lower() in ["yes", "y"]:
-                        result = agent.execute_operation(result.get("operation", {}), confirmed=True)
+                        result = agent.execute_operation(result, confirmed=True)
                 
                 print("\nResult:")
                 print(result)

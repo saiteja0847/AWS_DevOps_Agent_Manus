@@ -101,7 +101,7 @@ class EC2Agent:
             
             # Return the parsed parameters and validation results
             return {
-                "status": "success",
+                "status": "confirmation_required",
                 "message": "EC2 configuration parsed and validated",
                 "service": "ec2",
                 "operation_type": operation_type,

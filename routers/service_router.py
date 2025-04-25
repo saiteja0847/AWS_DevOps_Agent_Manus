@@ -249,7 +249,7 @@ class ServiceRouter:
         # Use LLM to determine routing
         routing_info = self._use_llm_for_routing(prompt)
         
-        service = routing_info.get("service", "unknown")
+        service = routing_info.get("service", "unknown").lower()
         operation_type = routing_info.get("operation_type", "read")
         is_lifecycle = routing_info.get("is_lifecycle", False)
         confidence = routing_info.get("confidence", 0.0)
