@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "Action": {
+      "type": "string",
+      "description": "The lifecycle action to perform on the instance.",
+      "enum": ["start", "stop", "reboot", "terminate"]
+    },
+    "InstanceId": {
+      "type": "string",
+      "description": "The ID of the instance to perform the action on."
+    },
+    "Force": {
+      "type": "boolean",
+      "description": "Whether to force the action (applicable for stop and terminate actions).",
+      "default": false
+    }
+  },
+  "required": ["Action", "InstanceId"],
+  "additionalProperties": false
+}

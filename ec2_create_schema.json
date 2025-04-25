@@ -1,0 +1,138 @@
+{
+  "type": "object",
+  "properties": {
+    "ImageId": {
+      "type": "string",
+      "description": "The ID of the AMI to use for the instance."
+    },
+    "InstanceType": {
+      "type": "string",
+      "description": "The instance type to use for the instance."
+    },
+    "KeyName": {
+      "type": "string",
+      "description": "The name of the key pair to use for the instance."
+    },
+    "SecurityGroupIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The IDs of the security groups to associate with the instance."
+    },
+    "SubnetId": {
+      "type": "string",
+      "description": "The ID of the subnet to launch the instance into."
+    },
+    "UserData": {
+      "type": "string",
+      "description": "The user data to make available to the instance."
+    },
+    "MinCount": {
+      "type": "integer",
+      "description": "The minimum number of instances to launch.",
+      "default": 1
+    },
+    "MaxCount": {
+      "type": "integer",
+      "description": "The maximum number of instances to launch.",
+      "default": 1
+    },
+    "BlockDeviceMappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "DeviceName": {
+            "type": "string",
+            "description": "The device name (for example, /dev/sdh or xvdh)."
+          },
+          "Ebs": {
+            "type": "object",
+            "properties": {
+              "DeleteOnTermination": {
+                "type": "boolean",
+                "description": "Indicates whether the EBS volume is deleted on instance termination."
+              },
+              "VolumeSize": {
+                "type": "integer",
+                "description": "The size of the volume, in GiB."
+              },
+              "VolumeType": {
+                "type": "string",
+                "description": "The volume type.",
+                "enum": ["standard", "io1", "io2", "gp2", "gp3", "sc1", "st1"]
+              },
+              "Iops": {
+                "type": "integer",
+                "description": "The number of I/O operations per second (IOPS) to provision for the volume."
+              }
+            }
+          }
+        }
+      },
+      "description": "The block device mapping entries."
+    },
+    "Tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Key": {
+            "type": "string",
+            "description": "The key of the tag."
+          },
+          "Value": {
+            "type": "string",
+            "description": "The value of the tag."
+          }
+        }
+      },
+      "description": "The tags to apply to the instance."
+    },
+    "InstanceInitiatedShutdownBehavior": {
+      "type": "string",
+      "description": "Indicates whether an instance stops or terminates when you initiate shutdown from the instance.",
+      "enum": ["stop", "terminate"]
+    },
+    "EbsOptimized": {
+      "type": "boolean",
+      "description": "Indicates whether the instance is optimized for Amazon EBS I/O."
+    },
+    "DisableApiTermination": {
+      "type": "boolean",
+      "description": "If you set this parameter to true, you can't terminate the instance using the Amazon EC2 console, CLI, or API."
+    },
+    "InstanceMarketOptions": {
+      "type": "object",
+      "properties": {
+        "MarketType": {
+          "type": "string",
+          "description": "The market type.",
+          "enum": ["spot"]
+        },
+        "SpotOptions": {
+          "type": "object",
+          "properties": {
+            "MaxPrice": {
+              "type": "string",
+              "description": "The maximum price per unit hour that you are willing to pay for a Spot Instance."
+            },
+            "SpotInstanceType": {
+              "type": "string",
+              "description": "The Spot Instance request type.",
+              "enum": ["one-time", "persistent"]
+            },
+            "BlockDurationMinutes": {
+              "type": "integer",
+              "description": "The required duration for the Spot Instances (also known as Spot blocks), in minutes."
+            }
+          }
+        }
+      },
+      "description": "The market (purchasing) option for the instances."
+    }
+  },
+  "required": ["InstanceType"],
+  "additionalProperties": false
+}
